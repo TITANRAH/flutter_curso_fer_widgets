@@ -30,6 +30,10 @@ class _UiControlsViewState extends State<_UiControlsView> {
   // si quisiera atrapar el valor seleccionado solo veo cual es
   Transportation selectedTransportation = Transportation.car;
 
+  bool wantsBreakFast = false;
+  bool wantsLaunch = false;
+  bool wantsDinner = false;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -47,49 +51,81 @@ class _UiControlsViewState extends State<_UiControlsView> {
           ),
         ),
 
-        RadioListTile(
-          title: const Text('By Car'),
-          subtitle: const Text('Viajar por auto'),
-          value: Transportation.car,
-          groupValue: selectedTransportation,
-          onChanged: (value) => setState(
-            () {
-              selectedTransportation = Transportation.car;
-            },
-          ),
+        ExpansionTile(
+          title: const Text('Vehiculo de transporte'),
+          subtitle: Text('$selectedTransportation'),
+          children: [
+            RadioListTile(
+              title: const Text('By Car'),
+              subtitle: const Text('Viajar por auto'),
+              value: Transportation.car,
+              groupValue: selectedTransportation,
+              onChanged: (value) => setState(
+                () {
+                  selectedTransportation = Transportation.car;
+                },
+              ),
+            ),
+            RadioListTile(
+              title: const Text('By Boat'),
+              subtitle: const Text('Viajar por bote'),
+              value: Transportation.boat,
+              groupValue: selectedTransportation,
+              onChanged: (value) => setState(
+                () {
+                  selectedTransportation = Transportation.boat;
+                },
+              ),
+            ),
+            RadioListTile(
+              title: const Text('By plane'),
+              subtitle: const Text('Viajar por plane'),
+              value: Transportation.plane,
+              groupValue: selectedTransportation,
+              onChanged: (value) => setState(
+                () {
+                  selectedTransportation = Transportation.plane;
+                },
+              ),
+            ),
+            RadioListTile(
+              title: const Text('By Submarine'),
+              subtitle: const Text('Viajar por submarine'),
+              value: Transportation.submarine,
+              groupValue: selectedTransportation,
+              onChanged: (value) => setState(
+                () {
+                  selectedTransportation = Transportation.submarine;
+                },
+              ),
+            ),
+          ],
         ),
 
-        RadioListTile(
-          title: const Text('By Boat'),
-          subtitle: const Text('Viajar por bote'),
-          value: Transportation.boat,
-          groupValue: selectedTransportation,
+        CheckboxListTile(
+          title: const Text('¿Desayuno?'),
+          value: wantsBreakFast,
           onChanged: (value) => setState(
             () {
-              selectedTransportation = Transportation.boat;
+              wantsBreakFast = !wantsBreakFast;
             },
           ),
         ),
-
-        RadioListTile(
-          title: const Text('By plane'),
-          subtitle: const Text('Viajar por plane'),
-          value: Transportation.plane,
-          groupValue: selectedTransportation,
+        CheckboxListTile(
+          title: const Text('¿Almuerzo?'),
+          value: wantsLaunch,
           onChanged: (value) => setState(
             () {
-              selectedTransportation = Transportation.plane;
+              wantsLaunch = !wantsLaunch;
             },
           ),
         ),
-        RadioListTile(
-          title: const Text('By Submarine'),
-          subtitle: const Text('Viajar por submarine'),
-          value: Transportation.submarine,
-          groupValue: selectedTransportation,
+        CheckboxListTile(
+          title: const Text('Cena?'),
+          value: wantsDinner,
           onChanged: (value) => setState(
             () {
-              selectedTransportation = Transportation.submarine;
+              wantsDinner = !wantsDinner;
             },
           ),
         ),
